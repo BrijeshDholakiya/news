@@ -8,21 +8,21 @@ const input = document.querySelector(".input");
 
 
 if (searchFrom.onsubmit == null) {
-  var url = (`${api.base}top-headlines?country=in&apiKey=${api.key}`);
-  fetchData(url);
-}
-
+  var urlLink = (`${api.base}top-headlines?country=in&apiKey=${api.key}`);
+  fetchData(urlLink);
+} 
 searchFrom.addEventListener("submit", ((e)=> {
   e.preventDefault();
   let topic = input.value;
-  var url = (`${api.base}everything?q=${topic}&apiKey=${api.key}`);
-  fetchData(url);
+  var urlLink = (`${api.base}everything?q=${topic}&apiKey=${api.key}`);
+  fetchData(urlLink);
   searchFrom.reset();
 }));
 
-function fetchData(url) {
+
+async function fetchData(url) {
   var req = new Request(url);
-  fetch(req)
+ await fetch(req)
     .then(response => response.json())
     .then((data) => {
       let newsData = "";
